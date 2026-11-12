@@ -1,0 +1,38 @@
+digraph G {
+graph [rankdir=TB, bgcolor="white", pad="0.4", nodesep="0.45", ranksep="0.8", fontname="DejaVu Sans", label="Class diagram — FIM құрылымы (әдістердің көбі қаңқа)", labelloc=t, fontsize=23];
+node [shape=plain,fontname="DejaVu Sans"];
+edge [fontname="DejaVu Sans",fontsize=10,color="#475569",arrowsize=0.7];
+Main [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#64748b"><TR><TD BGCOLOR="#dbeafe"><B>Main</B></TD></TR><HR/><TR><TD ALIGN="LEFT">+main(args: String[]): void</TD></TR></TABLE>>];
+MonitorConfig [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#64748b"><TR><TD BGCOLOR="#dbeafe"><B>MonitorConfig</B></TD></TR><HR/><TR><TD ALIGN="LEFT">-directoryPath: String</TD></TR><TR><TD ALIGN="LEFT">-databasePath: String</TD></TR><TR><TD ALIGN="LEFT">+getDirectoryPath(): String</TD></TR><TR><TD ALIGN="LEFT">+getDatabasePath(): String</TD></TR></TABLE>>];
+FileRecord [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#64748b"><TR><TD BGCOLOR="#dbeafe"><B>FileRecord</B></TD></TR><HR/><TR><TD ALIGN="LEFT">-path: String</TD></TR><TR><TD ALIGN="LEFT">-sha256: String</TD></TR><TR><TD ALIGN="LEFT">-size: long</TD></TR><TR><TD ALIGN="LEFT">-lastModified: long</TD></TR></TABLE>>];
+FileEvent [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#64748b"><TR><TD BGCOLOR="#dbeafe"><B>FileEvent</B></TD></TR><HR/><TR><TD ALIGN="LEFT">-filePath: String</TD></TR><TR><TD ALIGN="LEFT">-eventType: EventType</TD></TR><TR><TD ALIGN="LEFT">-oldHash: String</TD></TR><TR><TD ALIGN="LEFT">-newHash: String</TD></TR><TR><TD ALIGN="LEFT">-detectedAt: LocalDateTime</TD></TR></TABLE>>];
+EventType [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#64748b"><TR><TD BGCOLOR="#dbeafe"><B>EventType</B></TD></TR><HR/><TR><TD ALIGN="LEFT">«enumeration»</TD></TR><TR><TD ALIGN="LEFT">CREATED</TD></TR><TR><TD ALIGN="LEFT">MODIFIED</TD></TR><TR><TD ALIGN="LEFT">DELETED</TD></TR></TABLE>>];
+HashService [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#64748b"><TR><TD BGCOLOR="#dbeafe"><B>HashService</B></TD></TR><HR/><TR><TD ALIGN="LEFT">+calculateHash(filePath: Path): String</TD></TR></TABLE>>];
+DirectoryScanner [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#64748b"><TR><TD BGCOLOR="#dbeafe"><B>DirectoryScanner</B></TD></TR><HR/><TR><TD ALIGN="LEFT">-hashService: HashService</TD></TR><TR><TD ALIGN="LEFT">+scan(directoryPath: Path): List&lt;FileRecord&gt;</TD></TR></TABLE>>];
+DirectoryWatcher [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#64748b"><TR><TD BGCOLOR="#dbeafe"><B>DirectoryWatcher</B></TD></TR><HR/><TR><TD ALIGN="LEFT">+watch(directoryPath: Path,</TD></TR><TR><TD ALIGN="LEFT">  onEvent: Consumer&lt;FileEvent&gt;): void</TD></TR></TABLE>>];
+IntegrityService [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#64748b"><TR><TD BGCOLOR="#dbeafe"><B>IntegrityService</B></TD></TR><HR/><TR><TD ALIGN="LEFT">+compare(baseline: FileRecord,</TD></TR><TR><TD ALIGN="LEFT">  current: FileRecord): Optional&lt;FileEvent&gt;</TD></TR></TABLE>>];
+DatabaseManager [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#64748b"><TR><TD BGCOLOR="#dbeafe"><B>DatabaseManager</B></TD></TR><HR/><TR><TD ALIGN="LEFT">-databasePath: String</TD></TR><TR><TD ALIGN="LEFT">+getConnection(): Connection</TD></TR><TR><TD ALIGN="LEFT">+initializeDatabase(): void</TD></TR></TABLE>>];
+FileRepository [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#64748b"><TR><TD BGCOLOR="#dbeafe"><B>FileRepository</B></TD></TR><HR/><TR><TD ALIGN="LEFT">-databaseManager: DatabaseManager</TD></TR><TR><TD ALIGN="LEFT">+save(record: FileRecord): void</TD></TR><TR><TD ALIGN="LEFT">+findByPath(path: String): Optional&lt;FileRecord&gt;</TD></TR><TR><TD ALIGN="LEFT">+findAll(): List&lt;FileRecord&gt;</TD></TR></TABLE>>];
+AlertService [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#64748b"><TR><TD BGCOLOR="#dbeafe"><B>AlertService</B></TD></TR><HR/><TR><TD ALIGN="LEFT">+sendAlert(event: FileEvent): void</TD></TR></TABLE>>];
+EventLogger [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="8" COLOR="#64748b"><TR><TD BGCOLOR="#dbeafe"><B>EventLogger</B></TD></TR><HR/><TR><TD ALIGN="LEFT">-logFilePath: Path</TD></TR><TR><TD ALIGN="LEFT">+log(event: FileEvent): void</TD></TR></TABLE>>];
+subgraph cluster_config { label="config"; color="#cbd5e1"; style=rounded; MonitorConfig; }
+subgraph cluster_model { label="model"; color="#cbd5e1"; style=rounded; FileRecord;FileEvent;EventType; }
+subgraph cluster_service { label="service"; color="#cbd5e1"; style=rounded; DirectoryScanner;HashService;DirectoryWatcher;IntegrityService; }
+subgraph cluster_repository { label="repository"; color="#cbd5e1"; style=rounded; FileRepository;DatabaseManager; }
+subgraph cluster_notification { label="notification"; color="#cbd5e1"; style=rounded; AlertService;EventLogger; }
+DirectoryScanner -> HashService [label="1", arrowhead=vee];
+FileRepository -> DatabaseManager [label="1", arrowhead=vee];
+FileEvent -> EventType [label="1", arrowhead=vee];
+Main -> MonitorConfig [style=dashed,label="creates",arrowhead=vee];
+Main -> DirectoryScanner [style=dashed,label="creates",arrowhead=vee];
+Main -> HashService [style=dashed,label="creates",arrowhead=vee];
+Main -> DatabaseManager [style=dashed,label="creates",arrowhead=vee];
+Main -> FileRepository [style=dashed,label="creates",arrowhead=vee];
+DirectoryScanner -> FileRecord [style=dashed,arrowhead=vee];
+DirectoryWatcher -> FileEvent [style=dashed,arrowhead=vee];
+IntegrityService -> FileRecord [style=dashed,arrowhead=vee];
+IntegrityService -> FileEvent [style=dashed,arrowhead=vee];
+FileRepository -> FileRecord [style=dashed,arrowhead=vee];
+AlertService -> FileEvent [style=dashed,arrowhead=vee];
+EventLogger -> FileEvent [style=dashed,arrowhead=vee];
+}

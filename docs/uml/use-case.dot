@@ -1,0 +1,24 @@
+digraph G {
+graph [rankdir=LR,bgcolor="white",pad="0.4",nodesep="0.6",ranksep="1.2",fontname="DejaVu Sans",fontsize=22,label="Use Case — жоспарланған FIM",labelloc=t];
+node [fontname="DejaVu Sans",fontsize=15,style=filled,fillcolor="#eff6ff",color="#475569",margin="0.25,0.18"];
+edge [arrowhead=none,color="#475569"];
+User [shape=plaintext,fillcolor=white,label="«actor»
+Пайдаланушы"];
+subgraph cluster_system {
+label="File Integrity Monitor"; color="#64748b"; style=rounded;
+node [shape=ellipse];
+Select [label="Бақыланатын қалтаны
+таңдау"];
+Baseline [label="Сенімді бастапқы
+күйді тіркеу"];
+Start [label="Мониторингті
+бастау"];
+Alert [label="Өзгеріс туралы
+ескертуді алу"];
+Log [label="Оқиғалар журналын
+қарау"];
+Stop [label="Мониторингті
+тоқтату"];
+}
+User -> Select; User -> Baseline; User -> Start; User -> Alert; User -> Log; User -> Stop;
+}

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="1070" viewBox="0 0 1320 1070">
+<defs><marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8" fill="#334155"/></marker></defs>
+<rect width="1320" height="1070" fill="white"/>
+<text x="660" y="35" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="25" font-weight="bold" fill="#172033">Sequence — файлдың өзгеруін өңдеу</text>
+<text x="660" y="65" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="normal" fill="#172033">Жоспарланған сценарий: бастапқы жазба бар, файлды оқу сәтті</text>
+<rect x="23" y="95" width="224" height="48" fill="#eff6ff" stroke="#64748b"/>
+<text x="135" y="125" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="normal" fill="#172033">DirectoryWatcher</text>
+<line x1="135" y1="143" x2="135" y2="1000" stroke="#94a3b8" stroke-dasharray="7 5"/>
+<rect x="283" y="95" width="224" height="48" fill="#eff6ff" stroke="#64748b"/>
+<text x="395" y="125" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="normal" fill="#172033">Main / callback</text>
+<line x1="395" y1="143" x2="395" y2="1000" stroke="#94a3b8" stroke-dasharray="7 5"/>
+<rect x="543" y="95" width="224" height="48" fill="#eff6ff" stroke="#64748b"/>
+<text x="655" y="125" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="normal" fill="#172033">HashService</text>
+<line x1="655" y1="143" x2="655" y2="1000" stroke="#94a3b8" stroke-dasharray="7 5"/>
+<rect x="803" y="95" width="224" height="48" fill="#eff6ff" stroke="#64748b"/>
+<text x="915" y="125" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="normal" fill="#172033">FileRepository</text>
+<line x1="915" y1="143" x2="915" y2="1000" stroke="#94a3b8" stroke-dasharray="7 5"/>
+<rect x="1063" y="95" width="224" height="48" fill="#eff6ff" stroke="#64748b"/>
+<text x="1175" y="125" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="normal" fill="#172033">IntegrityService</text>
+<line x1="1175" y1="143" x2="1175" y2="1000" stroke="#94a3b8" stroke-dasharray="7 5"/>
+<rect x="25" y="165" width="235" height="60" fill="#f8fafc" stroke="#64748b"/>
+<text x="142" y="190" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="16" font-weight="normal" fill="#172033">ENTRY_MODIFY</text>
+<text x="142" y="212" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="14" font-weight="normal" fill="#172033">debounce аяқталды</text>
+<line x1="135" y1="260" x2="395" y2="260" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="265.0" y="250" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="normal" fill="#172033">onEvent.accept(event)</text>
+<line x1="395" y1="325" x2="655" y2="325" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="525.0" y="315" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="normal" fill="#172033">calculateHash(path)</text>
+<line x1="655" y1="385" x2="395" y2="385" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
+<text x="525.0" y="375" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="normal" fill="#172033">newHash</text>
+<line x1="395" y1="450" x2="915" y2="450" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="655.0" y="440" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="normal" fill="#172033">findByPath(path)</text>
+<line x1="915" y1="510" x2="395" y2="510" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
+<text x="655.0" y="500" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="normal" fill="#172033">Optional&lt;FileRecord&gt; baseline</text>
+<rect x="280" y="535" width="230" height="65" fill="#f8fafc" stroke="#64748b"/>
+<text x="395" y="560" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="16" font-weight="normal" fill="#172033">current = FileRecord</text>
+<text x="395" y="583" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="13" font-weight="normal" fill="#172033">жаңа хэш және метадеректер</text>
+<line x1="395" y1="640" x2="1175" y2="640" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+<text x="785.0" y="630" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="normal" fill="#172033">compare(baseline, current)</text>
+<rect x="280" y="665" width="980" height="290" fill="none" stroke="#64748b"/>
+<rect x="280" y="665" width="75" height="30" fill="#e2e8f0" stroke="#64748b"/>
+<text x="317" y="686" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="bold" fill="#172033">alt</text>
+<text x="375" y="716" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="16" font-weight="normal" fill="#172033">[хэштер әртүрлі]</text>
+<line x1="1175" y1="755" x2="395" y2="755" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
+<text x="785.0" y="745" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="normal" fill="#172033">Optional.of(FileEvent: MODIFIED)</text>
+<rect x="315" y="775" width="705" height="62" fill="#eff6ff" stroke="#64748b"/>
+<text x="335" y="800" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="16" font-weight="normal" fill="#172033">Callback: EventLogger.log(event)</text>
+<text x="335" y="824" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="16" font-weight="normal" fill="#172033">содан кейін AlertService.sendAlert(event)</text>
+<line x1="280" y1="855" x2="1260" y2="855" stroke="#64748b" stroke-dasharray="6 4"/>
+<text x="375" y="880" text-anchor="start" font-family="DejaVu Sans,sans-serif" font-size="16" font-weight="normal" fill="#172033">[хэштер бірдей]</text>
+<line x1="1175" y1="918" x2="395" y2="918" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)" stroke-dasharray="6 4"/>
+<text x="785.0" y="908" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="normal" fill="#172033">Optional.empty() — ескерту жоқ</text>
+<text x="660" y="1040" text-anchor="middle" font-family="DejaVu Sans,sans-serif" font-size="16" font-weight="normal" fill="#172033">Сенімді baseline автоматты жаңартылмайды. Қазіргі Main бұл сценарийді орындамайды.</text>
+</svg>
